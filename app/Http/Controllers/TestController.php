@@ -18,12 +18,16 @@ class TestController extends Controller
 
         //エロクワント vs クエリビルダ
         //どっちもセキュリティ面で優れている
-        //エロクワントの方がDBの連結やクエリの分割などにおいて便利
+        //エロクワントの方がDBの連結やクエリの分割などにおいて便利なので基本推奨。
 
         //クエリビルダ 基本getでとる
         $queryBuilder = DB::table('tests')->where('text', '=', 'bbb')
             ->select('id', 'text')
             ->get();
+
+        //ファサード
+        //デザインパターンの用語にも使われる
+        //処理の入口みたいなもの
 
         dd($values, $count, $first, $whereBBB, $queryBuilder);
 

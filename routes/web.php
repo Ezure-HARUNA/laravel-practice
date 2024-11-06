@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-// MEMO: Reactで言うところのimport文
-use App\Http\Controllers\TestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,4 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/tests/test', [TestController::class, 'index']);
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';

@@ -29,6 +29,10 @@ class TestController extends Controller
         //デザインパターンの用語にも使われる
         //処理の入口みたいなもの
 
+        //Blade
+        //シンプルでかつ強力なLaravelテンプレートエンジン
+
+
         dd($values, $count, $first, $whereBBB, $queryBuilder);
 
         //dd($values);

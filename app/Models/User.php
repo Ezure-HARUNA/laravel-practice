@@ -17,6 +17,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    //まとめてDB登録できるという意味
     protected $fillable = [
         'name',
         'email',

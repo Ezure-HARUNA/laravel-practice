@@ -14,13 +14,14 @@ class ContactFormController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-
+        $search = $request->search;
+        $query = ContactForm::search($search);
         // $contacts = ContactForm::select('id', 'name', 'title', 'created_at')
         //     ->get();
-        //ページネーション
-        $contacts = ContactForm::select('id', 'name', 'title', 'created_at')
+        //MEMO: ページネーション
+        $contacts = $query->select('id', 'name', 'title', 'created_at')
             ->paginate(20);
         return view('contacts.index', compact('contacts'));
     }

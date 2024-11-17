@@ -50,7 +50,7 @@ class ContactFormController extends Controller
             'name' => $request->name,
             'gender' => $request->gender,
             'age' => $request->age,
-            // 'contact' => $request->contact,
+            'contact' => $request->contact,
         ]);
         //リダイレクト
         return to_route('contacts.index');
@@ -102,7 +102,7 @@ class ContactFormController extends Controller
             'url' => $request->url,
             'gender' => $request->gender,
             'age' => $request->age,
-            // 'contact' => $request->contact,
+            'contact' => $request->contact,
         ]);
         //リダイレクト
         return to_route('contacts.index');

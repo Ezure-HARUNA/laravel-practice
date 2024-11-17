@@ -89,6 +89,7 @@ class ContactFormController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //! edit: 更新画面の情報を取得するメソッド
     public function edit($id)
     {
         $contact = ContactForm::find($id);
@@ -102,9 +103,21 @@ class ContactFormController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //! update:更新処理を行うメソッド
     public function update(Request $request, $id)
     {
-        //
+        $contact = ContactForm::find($id);
+        $contact->update([
+            'name' => $request->name,
+            'title' => $request->title,
+            'email' => $request->email,
+            'url' => $request->url,
+            'gender' => $request->gender,
+            'age' => $request->age,
+            'contact' => $request->contact,
+        ]);
+        //リダイレクト
+        return to_route('contacts.index');
     }
 
     /**
@@ -115,6 +128,9 @@ class ContactFormController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $contact = ContactForm::find($id);
+        $contact->delete();
+        //リダイレクト
+        return to_route('contacts.index');
     }
 }

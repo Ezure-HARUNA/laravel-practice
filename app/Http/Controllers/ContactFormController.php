@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ContactForm;
 use App\Services\CheckFormService;
+use App\Http\Requests\StoreContactRequest;
 
 class ContactFormController extends Controller
 {
@@ -37,8 +38,9 @@ class ContactFormController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreContactRequest $request)
     {
+        $request->merge(['is_edit' => false]); // フラグを追加
         // dd($request, $request->name);
         ContactForm::create([
             'name' => $request->name,
@@ -48,7 +50,7 @@ class ContactFormController extends Controller
             'name' => $request->name,
             'gender' => $request->gender,
             'age' => $request->age,
-            'contact' => $request->contact,
+            // 'contact' => $request->contact,
         ]);
         //リダイレクト
         return to_route('contacts.index');
@@ -89,8 +91,9 @@ class ContactFormController extends Controller
      * @return \Illuminate\Http\Response
      */
     //! update:更新処理を行うメソッド
-    public function update(Request $request, $id)
+    public function update(StoreContactRequest $request, $id)
     {
+        $request->merge(['is_edit' => true]); // フラグを追加
         $contact = ContactForm::find($id);
         $contact->update([
             'name' => $request->name,
@@ -99,7 +102,7 @@ class ContactFormController extends Controller
             'url' => $request->url,
             'gender' => $request->gender,
             'age' => $request->age,
-            'contact' => $request->contact,
+            // 'contact' => $request->contact,
         ]);
         //リダイレクト
         return to_route('contacts.index');
